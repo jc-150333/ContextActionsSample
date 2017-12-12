@@ -23,7 +23,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>ContextActionsSample</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.ContextActionsSample</string>
+	<string>jp.jc21.ContextActionsSample</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>

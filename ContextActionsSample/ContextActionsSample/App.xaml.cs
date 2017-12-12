@@ -33,6 +33,7 @@ namespace ContextActionsSample
 
     class MyPage : ContentPage
     {
+        //0～50の文字列
         private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
 
         public MyPage()
