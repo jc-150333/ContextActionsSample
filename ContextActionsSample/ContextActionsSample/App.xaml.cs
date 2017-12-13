@@ -45,6 +45,9 @@ namespace ContextActionsSample
                 ItemsSource = _ar,
                 ItemTemplate = new DataTemplate(() => new MyCell(this)),
             };
+            //Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
+            //Content = listView;
+            //文字入力
             var entry = new Entry
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand
@@ -61,12 +64,25 @@ namespace ContextActionsSample
                 if (!String.IsNullOrEmpty(entry.Text))
                 {
                     _ar.Add(entry.Text);
-
-                    //entry.Text = "";
                 }
             };
-            Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
-            Content = listView;
+
+            Content = new StackLayout
+            {
+                Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0),
+                Children =
+                    {
+                        new StackLayout
+                        {
+                            BackgroundColor = Color.HotPink,
+                            Padding = 5,
+                            Orientation = StackOrientation.Horizontal,
+                            Children = {entry,buttonAdd}//Entryコントロールとボタンコントロールを配置
+                        },
+                        listView//その下にリストボックス
+                    }
+
+            };
         }
 
         public async void Action(MenuItem item)
