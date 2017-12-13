@@ -34,7 +34,8 @@ namespace ContextActionsSample
     class MyPage : ContentPage
     {
         //0～50の文字列
-        private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
+        //private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
+        private ObservableCollection<string> _ar;
 
         public MyPage()
         {
@@ -43,6 +44,26 @@ namespace ContextActionsSample
                 //ItemsSource = Enumerable.Range(0, 50).Select(n => "item-" + n),
                 ItemsSource = _ar,
                 ItemTemplate = new DataTemplate(() => new MyCell(this)),
+            };
+            var entry = new Entry
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            //追加
+            var buttonAdd = new Button
+            {
+                WidthRequest = 60,
+                TextColor = Color.Black,
+                Text = "Add"
+            };
+            buttonAdd.Clicked += (s, a) =>
+            {//追加ボタンの処理
+                if (!String.IsNullOrEmpty(entry.Text))
+                {
+                    _ar.Add(entry.Text);
+
+                    //entry.Text = "";
+                }
             };
             Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
             Content = listView;
