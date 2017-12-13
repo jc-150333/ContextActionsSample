@@ -61,10 +61,12 @@ namespace ContextActionsSample
             };
             buttonAdd.Clicked += (s, a) =>
             {//追加ボタンの処理
-                if (!String.IsNullOrEmpty(entry.Text))
-                {
-                    _ar.Add(string.Format(entry.Text));
-                }
+                //if (!String.IsNullOrEmpty(entry.Text))
+                //{
+                    //_ar.Add(string.Format(entry.Text));
+
+                    _ar.Add(string.Format("item"));
+                //}
             };
 
             Content = new StackLayout
