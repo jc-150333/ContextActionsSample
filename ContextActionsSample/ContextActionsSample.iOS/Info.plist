@@ -50,5 +50,7 @@
 	<string>ContextActionsSample</string>
 	<key>MinimumOSVersion</key>
 	<string>10.3</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

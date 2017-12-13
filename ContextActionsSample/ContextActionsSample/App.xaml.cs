@@ -63,7 +63,7 @@ namespace ContextActionsSample
             {//追加ボタンの処理
                 if (!String.IsNullOrEmpty(entry.Text))
                 {
-                    _ar.Add(entry.Text);
+                    _ar.Add(string.Format(entry.Text));
                 }
             };
 
