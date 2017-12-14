@@ -10,9 +10,17 @@ namespace ContextActionsSample
 {
 	public partial class App : Application
 	{
-		public App ()
-		{
-			MainPage = new MyPage();
+        //データベースのパスを格納
+        public static string dbPath;
+
+        public App(string dbPath)
+        {
+            //AppのdbPathに引数のパスを設定
+            App.dbPath = dbPath;
+
+            InitializeComponent();
+
+            MainPage = new MyPage2();
 		}
 
 		protected override void OnStart ()
@@ -34,8 +42,7 @@ namespace ContextActionsSample
     class MyPage : ContentPage
     {
         //0～50の文字列
-        //private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
-        private ObservableCollection<string> _ar;
+        private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
 
         public MyPage()
         {
@@ -45,46 +52,9 @@ namespace ContextActionsSample
                 ItemsSource = _ar,
                 ItemTemplate = new DataTemplate(() => new MyCell(this)),
             };
-            //Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
-            //Content = listView;
-            //文字入力
-            var entry = new Entry
-            {
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
-            //追加
-            var buttonAdd = new Button
-            {
-                WidthRequest = 60,
-                TextColor = Color.Black,
-                Text = "Add"
-            };
-            buttonAdd.Clicked += (s, a) =>
-            {//追加ボタンの処理
-                //if (!String.IsNullOrEmpty(entry.Text))
-                //{
-                    //_ar.Add(string.Format(entry.Text));
-
-                    _ar.Add(string.Format("item"));
-                //}
-            };
-
-            Content = new StackLayout
-            {
-                Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0),
-                Children =
-                    {
-                        new StackLayout
-                        {
-                            BackgroundColor = Color.HotPink,
-                            Padding = 5,
-                            Orientation = StackOrientation.Horizontal,
-                            Children = {entry,buttonAdd}//Entryコントロールとボタンコントロールを配置
-                        },
-                        listView//その下にリストボックス
-                    }
-
-            };
+            Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
+            Content = listView;
+            
         }
 
         public async void Action(MenuItem item)
