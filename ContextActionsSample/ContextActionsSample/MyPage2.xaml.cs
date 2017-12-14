@@ -22,7 +22,7 @@ namespace ContextActionsSample
             {
                 //ItemsSource = Enumerable.Range(0, 50).Select(n => "item-" + n),
                 ItemsSource = _ar,
-                ItemTemplate = new DataTemplate(() => new MyCell(this)),
+                ItemTemplate = new DataTemplate(() => new MyCell2(this)),
             };
             Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
             Content = listView;
@@ -43,9 +43,9 @@ namespace ContextActionsSample
         }
     }
 
-    class MyCell : ViewCell
+    class MyCell2 : ViewCell
     {
-        public MyCell(MyPage2 myPage)
+        public MyCell2(MyPage2 myPage)
         {
             var label = new Label
             {
