@@ -12,28 +12,74 @@ namespace ContextActionsSample
 	public partial class MyPage2 : ContentPage
     {
         //0～50の文字列
-        //private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
+        private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
 
         //private ObservableCollection<UserModel> _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
 
-        private ObservableCollection<UserModel> _ar;
+        //private ObservableCollection<UserModel> _ar;
 
         public MyPage2()
         {
-            UserModel.insertUser("鈴木");
+            //UserModel.insertUser("鈴木");
 
-            if (UserModel.selectUser() != null)
-            {
-                _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
-            }
+            //if (UserModel.selectUser() != null)
+            //{
+            //    _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
+            //}
+
             var listView = new ListView
             {
                 //ItemsSource = Enumerable.Range(0, 50).Select(n => "item-" + n),
                 ItemsSource = _ar,
                 ItemTemplate = new DataTemplate(() => new MyCell2(this)),
             };
-            Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
-            Content = listView;
+
+            //文字入力
+            var entry = new Entry
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+            //追加
+            var buttonAdd = new Button
+            {
+                WidthRequest = 60,
+                TextColor = Color.Black,
+                Text = "Add"
+            };
+            buttonAdd.Clicked += (s, a) =>
+            {//追加ボタンの処理
+                if (!String.IsNullOrEmpty(entry.Text))
+                {
+                    //UserModel.insertUser(entry.Text);
+
+                    _ar.Add(entry.Text);
+
+                    //id++;
+
+                    //Application.Current.MainPage = new MainPage4();
+
+                    //entry.Text = "";
+                }
+            };
+
+            Content = new StackLayout
+            {
+                Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0),
+                Children =
+                    {
+                        new StackLayout
+                        {
+                            BackgroundColor = Color.HotPink,
+                            Padding = 5,
+                            Orientation = StackOrientation.Horizontal,
+                            Children = {entry,buttonAdd}//Entryコントロールとボタンコントロールを配置
+                        },
+                        listView//その下にリストボックス
+                    }
+
+            };
+            //Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
+            //Content = listView;
 
         }
 
