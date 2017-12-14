@@ -12,26 +12,28 @@ namespace ContextActionsSample
 	public partial class MyPage2 : ContentPage
     {
         //0～50の文字列
-        private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
+        //private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
 
+        //private ObservableCollection<int> _ar = new ObservableCollection<int>(Enumerable.Range(0, 50).Select(n => n));
+        
         //private ObservableCollection<UserModel> _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
 
-        //private ObservableCollection<UserModel> _ar;
+        private ObservableCollection<UserModel> _ar;
 
         public MyPage2()
         {
-            //UserModel.insertUser("鈴木");
+            UserModel.insertUser("鈴木");
 
-            //if (UserModel.selectUser() != null)
-            //{
-            //    _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
-            //}
+            if (UserModel.selectUser() != null)
+            {
+                _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
+            }
 
             var listView = new ListView
             {
                 //ItemsSource = Enumerable.Range(0, 50).Select(n => "item-" + n),
                 ItemsSource = _ar,
-                ItemTemplate = new DataTemplate(() => new MyCell2(this)),
+                //ItemTemplate = new DataTemplate(() => new MyCell2(this)),
             };
 
             //文字入力
@@ -52,7 +54,7 @@ namespace ContextActionsSample
                 {
                     //UserModel.insertUser(entry.Text);
 
-                    _ar.Add(entry.Text);
+                    _ar.Add(new UserModel { Name = entry.Text });
 
                     //id++;
 
