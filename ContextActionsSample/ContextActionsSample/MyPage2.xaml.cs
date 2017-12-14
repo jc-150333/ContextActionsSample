@@ -14,10 +14,18 @@ namespace ContextActionsSample
         //0～50の文字列
         //private ObservableCollection<string> _ar = new ObservableCollection<string>(Enumerable.Range(0, 50).Select(n => "item-" + n));
 
-        private ObservableCollection<UserModel> _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
+        //private ObservableCollection<UserModel> _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
+
+        private ObservableCollection<UserModel> _ar;
 
         public MyPage2()
         {
+            UserModel.insertUser("鈴木");
+
+            if (UserModel.selectUser() != null)
+            {
+                _ar = new ObservableCollection<UserModel>(UserModel.selectUser());
+            }
             var listView = new ListView
             {
                 //ItemsSource = Enumerable.Range(0, 50).Select(n => "item-" + n),
